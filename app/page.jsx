@@ -1,3 +1,3 @@
 export default function Home() {
-  return "empty string";
+  return "This is the home page!";
 }
