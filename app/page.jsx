@@ -1,17 +1,27 @@
 "use client";
-import { LetterInput } from "@/components/LetterInput";
+import { AllLetterInputs } from "@/components/AllLetterInputs";
 import { useState } from "react";
 export default function Home() {
-  const [letter, setLetter] = useState("");
+  const [letters, setLetters] = useState([
+    "s",
+    "c",
+    "r",
+    "a",
+    "b",
+    "b",
+    "l",
+    "e",
+  ]);
   return (
     <div>
       <h1>Scrabble Solver</h1>
       <p>This is the home page</p>
-      <LetterInput
-        value={letter}
-        onChange={(newLetter) => setLetter(newLetter)}
+      <AllLetterInputs
+        value={letters}
+        onChange={(newLetters) => setLetters(newLetters)}
       />
-      <button onClick={() => console.log(letter)}>Submit</button>
+
+      <button onClick={() => console.log(letters)}>Submit</button>
     </div>
   );
 }
