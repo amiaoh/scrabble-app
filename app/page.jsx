@@ -1,6 +1,8 @@
 "use client";
 import { AllLetterInputs } from "@/components/AllLetterInputs";
 import { useState } from "react";
+import { getAnagrams } from "./actions";
+
 export default function Home() {
   const [letters, setLetters] = useState([
     "s",
@@ -21,7 +23,7 @@ export default function Home() {
         onChange={(newLetters) => setLetters(newLetters)}
       />
 
-      <button onClick={() => console.log(letters)}>Submit</button>
+      <button onClick={() => getAnagrams()}>Submit</button>
     </div>
   );
 }
