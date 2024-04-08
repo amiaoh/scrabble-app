@@ -1,11 +1,27 @@
-import Link from "next/link";
-
+"use client";
+import { AllLetterInputs } from "@/components/AllLetterInputs";
+import { useState } from "react";
 export default function Home() {
+  const [letters, setLetters] = useState([
+    "s",
+    "c",
+    "r",
+    "a",
+    "b",
+    "b",
+    "l",
+    "e",
+  ]);
   return (
     <div>
       <h1>Scrabble Solver</h1>
       <p>This is the home page</p>
-      <Link href="/about">About</Link>
+      <AllLetterInputs
+        value={letters}
+        onChange={(newLetters) => setLetters(newLetters)}
+      />
+
+      <button onClick={() => console.log(letters)}>Submit</button>
     </div>
   );
 }
