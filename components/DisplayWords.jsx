@@ -4,8 +4,8 @@ export function DisplayWords({ anagrams }) {
   }
   return (
     <ul>
-      {anagrams.map((word) => {
-        return <li>{word}</li>;
+      {anagrams.map((word, index) => {
+        return <li key={index}>{word}</li>;
       })}
     </ul>
   );
