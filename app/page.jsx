@@ -2,6 +2,7 @@
 import { AllLetterInputs } from "@/components/AllLetterInputs";
 import { useState } from "react";
 import { getAnagrams } from "./actions";
+import { DisplayWords } from "@/components/DisplayWords";
 
 export default function Home() {
   const [letters, setLetters] = useState([
@@ -14,6 +15,7 @@ export default function Home() {
     "l",
     "e",
   ]);
+  const [currentAnagrams, setCurrentAnagrams] = useState(null);
   return (
     <div>
       <h1>Scrabble Solver</h1>
@@ -23,7 +25,14 @@ export default function Home() {
         onChange={(newLetters) => setLetters(newLetters)}
       />
 
-      <button onClick={() => getAnagrams()}>Submit</button>
+      <button
+        onClick={async () => {
+          setCurrentAnagrams(await getAnagrams(letters));
+        }}
+      >
+        Submit
+      </button>
+      <DisplayWords anagrams={currentAnagrams} />
     </div>
   );
 }

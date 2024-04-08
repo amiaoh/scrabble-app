@@ -1,7 +1,8 @@
 "use server";
 
-export async function getAnagrams() {
-  const url = `http://www.anagramica.com/all/absiu`;
+export async function getAnagrams(letters) {
+  const lettersAsString = letters.join("");
+  const url = `http://www.anagramica.com/all/${lettersAsString}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
