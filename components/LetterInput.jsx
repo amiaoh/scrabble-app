@@ -1,14 +1,12 @@
 "use client";
 
-export function LetterInput({ value, onChange }) {
+export function LetterInput({ value, onChange, width }) {
   return (
     <input
-      style={{ width: "1rem" }}
+      style={{ width }}
       value={value}
       onChange={(e) => {
-        if (e.target.value.length < 2 && /[a-z/\s]$/.test(e.target.value)) {
-          onChange(e.target.value);
-        }
+        onChange(e.target.value);
         return;
       }}
     />
