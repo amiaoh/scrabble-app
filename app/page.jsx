@@ -1,7 +1,6 @@
 "use client";
 import { AllLetterInputs } from "@/components/AllLetterInputs";
 import { useState } from "react";
-import { DisplayWords } from "@/components/DisplayWords";
 import Link from "next/link";
 
 // import "tailwindcss/tailwind.css";
