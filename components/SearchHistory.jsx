@@ -21,6 +21,13 @@ export function SearchHistory() {
     <div>
       <h3>Search History</h3>
       <h4>Last 10 searches</h4>
+      <button
+        onClick={() => {
+          setAllQueries([]);
+        }}
+      >
+        Clear all history
+      </button>
       {allQueries.map((query, index) => {
         return (
           <div key={index} style={{ display: "flex" }}>
