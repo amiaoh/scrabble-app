@@ -1,4 +1,5 @@
 import { NavigationBar } from "@/components/NavigationBar";
+import { SearchHistory } from "@/components/SearchHistory";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <NavigationBar />
         {children}
+        <SearchHistory />
       </body>
     </html>
   );

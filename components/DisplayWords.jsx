@@ -1,12 +1,15 @@
 export function DisplayWords({ anagrams }) {
   if (!anagrams) {
-    return <p>No anagrams to display. Hit submit to get started!</p>;
+    return <p>No anagrams to display.</p>;
   }
   return (
-    <ul>
-      {anagrams.map((word, index) => {
-        return <li key={index}>{word}</li>;
-      })}
-    </ul>
+    <div>
+      <h3>Anagrams</h3>
+      <ul>
+        {anagrams.map((word, index) => {
+          return <li key={index}>{word}</li>;
+        })}
+      </ul>
+    </div>
   );
 }

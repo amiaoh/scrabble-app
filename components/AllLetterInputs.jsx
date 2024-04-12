@@ -6,6 +6,7 @@ export function AllLetterInputs({ value, onChange }) {
       <div className="m-2" style={{ display: "flex", flexDirection: "column" }}>
         <label htmlFor="player-letters">Player Letters</label>
         <LetterInput
+          placeholder="scrabbl"
           width="6rem"
           name="player-letters"
           value={value[0]}
@@ -19,6 +20,7 @@ export function AllLetterInputs({ value, onChange }) {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <label htmlFor="player-letters">Board Letters</label>
         <LetterInput
+          placeholder="e"
           width="1rem"
           name="board-letters"
           value={value[1]}
