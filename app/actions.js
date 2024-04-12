@@ -1,8 +1,7 @@
 "use server";
 
 export async function getAnagrams(letters) {
-  const lettersAsString = letters.join("");
-  const url = `http://www.anagramica.com/all/${lettersAsString}`;
+  const url = `http://www.anagramica.com/all/${letters}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
