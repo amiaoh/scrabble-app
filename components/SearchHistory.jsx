@@ -7,7 +7,7 @@ export function SearchHistory() {
   const currentURL = usePathname();
 
   useEffect(() => {
-    const newQueries = [...allQueries, currentURL.substring(1)];
+    const newQueries = [...allQueries, currentURL.substring(1)].slice(-10);
     setAllQueries(
       newQueries.filter((query) => query.length > 0 && query !== "about")
     );
@@ -20,8 +20,24 @@ export function SearchHistory() {
   return (
     <div>
       <h3>Search History</h3>
+      <h4>Last 10 searches</h4>
       {allQueries.map((query, index) => {
-        return <p key={index}>{query}</p>;
+        return (
+          <div key={index} style={{ display: "flex" }}>
+            <p>{query}</p>
+            <button
+              onClick={() => {
+                setAllQueries([
+                  ...allQueries.slice(0, index),
+                  ...allQueries.slice(index + 1),
+                ]);
+              }}
+              style={{ height: "2rem" }}
+            >
+              ❌
+            </button>
+          </div>
+        );
       })}
     </div>
   );
