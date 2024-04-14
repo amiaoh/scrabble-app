@@ -3,16 +3,18 @@
 import { DisplayWords } from "@/components/DisplayWords";
 import { AllLetterInputs } from "@/components/AllLetterInputs";
 import Link from "next/link";
-
-import { getAnagrams } from "../actions";
+import { getAnagrams } from "../getAnagrams";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getSearchHistory } from "../getSearchHistory";
+import { addQuery } from "../addQuery";
+import { SearchHistory } from "@/components/SearchHistory";
 
 export default function Word() {
   const [anagrams, setAnagrams] = useState([]);
   const currentURL = usePathname();
   const currentURLWithoutSlash = currentURL.substring(1);
-  const [letters, setLetters] = useState(["scrabbl", "e"]);
+  const [letters, setLetters] = useState(["", ""]);
   const joinedLetters = letters.join("");
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export default function Word() {
       setAnagrams(newAnagrams);
     };
     getAnagramsFromBackendAndSetState();
+    getSearchHistory();
   }, []);
   return (
     <div>
@@ -29,10 +32,16 @@ export default function Word() {
         value={letters}
         onChange={(newInput) => setLetters(newInput)}
       />
-      <Link className="material-icons" href={`/${joinedLetters}`}>
+      <Link
+        onClick={async () => {
+          await addQuery(joinedLetters);
+        }}
+        href={`/${joinedLetters}`}
+      >
         Submit
       </Link>
       <DisplayWords anagrams={anagrams} />
+      <SearchHistory />
     </div>
   );
 }

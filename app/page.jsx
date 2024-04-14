@@ -2,6 +2,8 @@
 import { AllLetterInputs } from "@/components/AllLetterInputs";
 import { useState } from "react";
 import Link from "next/link";
+import { SearchHistory } from "@/components/SearchHistory";
+import { addQuery } from "./addQuery";
 
 // import "tailwindcss/tailwind.css";
 
@@ -16,9 +18,15 @@ export default function Home() {
         value={letters}
         onChange={(newInput) => setLetters(newInput)}
       />
-      <Link className="material-icons" href={`/${joinedLetters}`}>
+      <Link
+        onClick={async () => {
+          await addQuery(joinedLetters);
+        }}
+        href={`/${joinedLetters}`}
+      >
         Submit
       </Link>
+      <SearchHistory />
     </div>
   );
 }
