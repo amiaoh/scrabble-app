@@ -1,23 +1,17 @@
 "use server";
 
-import path from "path";
-import fs from "fs";
-import { writeQueries } from "./writeQueries";
-
+const ACCESS_TOKEN_AUTH = process.env.PANTRY_API_KEY;
 export async function getSearchHistory() {
-  const filePath = path.join(
-    process.cwd(),
-    "app",
-    "data",
-    "searchHistory.json"
-  );
+  const url = `https://getpantry.cloud/apiv1/pantry/${ACCESS_TOKEN_AUTH}/basket/newBasket93`;
+
   try {
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    return JSON.parse(fileContents);
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.searchHistory;
   } catch (error) {
-    console.log(error);
-    await writeQueries([]);
+    console.log(`Error:${error}`);
   }
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  return JSON.parse(fileContents);
 }
