@@ -1,51 +1,55 @@
 "use client";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { use, useEffect, useState } from "react";
+import { getSearchHistory } from "@/app/getSearchHistory";
+import { deleteQuery } from "@/app/deleteQuery";
+import { deleteAllQueries } from "@/app/deleteAllQueries";
 
 export function SearchHistory() {
-  const [allQueries, setAllQueries] = useState(["as", "fd"]);
-  const currentURL = usePathname();
-
-  useEffect(() => {
-    const newQueries = [...allQueries, currentURL.substring(1)].slice(-10);
-    setAllQueries(
-      newQueries.filter((query) => query.length > 0 && query !== "about")
-    );
-  }, [currentURL]);
-
-  if (currentURL === "/about") {
-    return <></>;
-  }
+  const [allQueries, setAllQueries] = useState([]);
 
   return (
     <div>
       <h3>Search History</h3>
-      <h4>Last 10 searches</h4>
+      <h4>Last 5 searches</h4>
       <button
-        onClick={() => {
-          setAllQueries([]);
+        onClick={async () => {
+          const updatedQueries = await getSearchHistory();
+          setAllQueries(updatedQueries);
+        }}
+      >
+        Refresh Search History
+      </button>
+      <button
+        onClick={async () => {
+          deleteAllQueries();
+          const updatedQueries = await getSearchHistory();
+          setAllQueries(updatedQueries);
         }}
       >
         Clear all history
       </button>
-      {allQueries.map((query, index) => {
-        return (
-          <div key={index} style={{ display: "flex" }}>
-            <p>{query}</p>
-            <button
-              onClick={() => {
-                setAllQueries([
-                  ...allQueries.slice(0, index),
-                  ...allQueries.slice(index + 1),
-                ]);
-              }}
-              style={{ height: "2rem" }}
-            >
-              ❌
-            </button>
-          </div>
-        );
-      })}
+
+      {allQueries === undefined ? (
+        <></>
+      ) : (
+        allQueries.map((query, index) => {
+          return (
+            <div key={index} style={{ display: "flex" }}>
+              <p>{query}</p>
+              <button
+                onClick={async () => {
+                  await deleteQuery(query);
+                  const updatedQueries = await getSearchHistory();
+                  setAllQueries(updatedQueries);
+                }}
+                style={{ height: "2rem" }}
+              >
+                ❌
+              </button>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 }
