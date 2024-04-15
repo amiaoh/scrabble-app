@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SearchHistory } from "@/components/SearchHistory";
 import { addQuery } from "./addQuery";
 
-// import "tailwindcss/tailwind.css";
+import "tailwindcss/tailwind.css";
 
 export default function Home() {
   const [letters, setLetters] = useState(["", ""]);
