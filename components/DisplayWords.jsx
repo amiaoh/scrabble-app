@@ -1,12 +1,15 @@
-export function DisplayWords({ anagrams }) {
-  if (!anagrams) {
+export function DisplayWords({ anagrams, compulsoryLetter }) {
+  const filteredAnagrams = anagrams.filter((anagram) => {
+    return anagram.includes(compulsoryLetter) && anagram.length >= 2;
+  });
+  if (!filteredAnagrams) {
     return <p>No anagrams to display.</p>;
   }
   return (
     <div>
       <h3>Anagrams</h3>
       <ul>
-        {anagrams.map((word, index) => {
+        {filteredAnagrams.map((word, index) => {
           return <li key={index}>{word}</li>;
         })}
       </ul>

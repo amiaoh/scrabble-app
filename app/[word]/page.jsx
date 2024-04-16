@@ -14,6 +14,9 @@ export default function Word() {
   const [anagrams, setAnagrams] = useState([]);
   const currentURL = usePathname();
   const currentURLWithoutSlash = currentURL.substring(1);
+  const compulsoryLetterCurrentPage = currentURLWithoutSlash.charAt(
+    currentURLWithoutSlash.length - 1
+  );
   const [playerLetters, setPlayerLetters] = useState("");
   const [boardLetter, setBoardLetter] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -83,7 +86,10 @@ export default function Word() {
       <div style={{ color: "red" }}>
         {errorMessage ? <p>{errorMessage}</p> : null}
       </div>
-      <DisplayWords anagrams={anagrams} />
+      <DisplayWords
+        anagrams={anagrams}
+        compulsoryLetter={compulsoryLetterCurrentPage}
+      />
       <SearchHistory />
     </div>
   );
