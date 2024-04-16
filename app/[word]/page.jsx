@@ -32,7 +32,7 @@ export default function Word() {
     };
     getAnagramsFromBackendAndSetState();
     getSearchHistory();
-  }, []);
+  }, [currentURLWithoutSlash]);
   return (
     <div>
       <h2>{currentURLWithoutSlash}</h2>

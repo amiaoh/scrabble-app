@@ -24,8 +24,8 @@ export default function AboutPage() {
         </p>
         <p class="mb-2 text-gray-500 dark:text-gray-400 padding">
           Your previous searches will automatically save. Due to API
-          limitations, there is a button you'll need to hit in order to see your
-          past searches.
+          limitations, there is a button you will need to hit in order to see
+          your past searches.
         </p>
       </div>
       <h2 class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3">
