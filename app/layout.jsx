@@ -1,6 +1,7 @@
 import { NavigationBar } from "@/components/NavigationBar";
 import { SearchHistory } from "@/components/SearchHistory";
 import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
