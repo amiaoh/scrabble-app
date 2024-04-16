@@ -4,7 +4,6 @@ const ACCESS_TOKEN_AUTH = process.env.PANTRY_API_KEY;
 
 export async function writeQueries(queries) {
   const url = `https://getpantry.cloud/apiv1/pantry/${ACCESS_TOKEN_AUTH}/basket/newBasket93`;
-  console.log(JSON.stringify({ searchHistory: queries }));
   try {
     const response = await fetch(url, {
       method: "POST",
